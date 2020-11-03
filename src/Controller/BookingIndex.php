@@ -113,6 +113,9 @@ class BookingIndex extends AbstractController
      */
     public function bookings()
     {
-        return $this->render('bookings/bookings.html.twig');
+        $this->generateUrl('bookings');
+        $repository = $this->getDoctrine()->getRepository(Booking::class);
+        $bookings = $repository->findAll();
+        return $this->render('bookings/list.html.twig', ['bookings' => $bookings]);
     }
 }
